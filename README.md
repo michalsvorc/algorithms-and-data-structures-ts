@@ -2,16 +2,16 @@
 
 ## Content
 
-- [Queue](src/queue)
-- [Priority queue](src/priorityQueue)
-- [Stack](src/stack)
-- [Linked list](src/linkedList)
+### Data structures
 
-## Docker
+- [Queue](src/dataStructures/queue)
+- [Priority queue](src/dataStructures/priorityQueue)
+- [Stack](src/dataStructures/stack)
+- [Linked list](src/dataStructures/linkedList)
 
-Node.js environment for development and test runner.
+## Development
 
-See help:
+Docker container for development and test runner:
 ```sh
 ./docker.sh --help
 ```
