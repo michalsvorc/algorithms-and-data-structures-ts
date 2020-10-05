@@ -9,6 +9,10 @@
 - [Stack](src/dataStructures/stack)
 - [Linked list](src/dataStructures/linkedList)
 
+### Sort algorithms
+
+- [Merge sort](src/sortAlgorithms/mergeSort)
+
 ## Development
 
 Docker container for development and test runner:
