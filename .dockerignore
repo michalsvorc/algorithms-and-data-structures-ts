@@ -1,0 +1,6 @@
+# Ignore everything
+coverage/
+node_modules/
+
+docker.sh
+Dockerfile
