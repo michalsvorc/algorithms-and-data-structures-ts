@@ -10,4 +10,6 @@ Conceptually, a merge sort works as follows:
 
 ![Merge sort algorithm](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Merge_sort_algorithm_diagram.svg/798px-Merge_sort_algorithm_diagram.svg.png)
 
-[Source](https://en.wikipedia.org/wiki/Merge_sort)
+## References
+
+[Wikipedia](https://en.wikipedia.org/wiki/Merge_sort)
