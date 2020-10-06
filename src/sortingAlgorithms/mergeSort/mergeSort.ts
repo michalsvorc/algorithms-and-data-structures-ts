@@ -18,7 +18,10 @@ const merge = <T>(leftArray: T[], rightArray: T[]): T[] => {
     }
   }
 
-  /** Return the result array concatenated with the last element in either left or the right  array that skipped due the while loop condition */
+  /**
+   * Return the result array concatenated with the remaining element in either left or right array
+   * that was skipped from resultArray.push() due to the left/right array length inequality.
+   */
   return [
     ...resultArray,
     ...leftArray.slice(leftIndex),
