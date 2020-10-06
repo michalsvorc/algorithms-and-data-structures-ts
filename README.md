@@ -4,13 +4,14 @@
 
 ### Data structures
 
-- [Queue](src/dataStructures/queue)
-- [Priority queue](src/dataStructures/priorityQueue)
-- [Stack](src/dataStructures/stack)
 - [Linked list](src/dataStructures/linkedList)
+- [Priority queue](src/dataStructures/priorityQueue)
+- [Queue](src/dataStructures/queue)
+- [Stack](src/dataStructures/stack)
 
 ### Sorting algorithms
 
+- [Insertion sort](src/sortingAlgorithms/insertionSort)
 - [Merge sort](src/sortingAlgorithms/mergeSort)
 - [Quick sort](src/sortingAlgorithms/quickSort)
 
