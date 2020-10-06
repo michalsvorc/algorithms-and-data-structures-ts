@@ -19,10 +19,10 @@ Animated visualization of the quicksort algorithm. The horizontal lines are pivo
 
 ## Complexity
 
-- Worst-case performance: O(n<sup>2</sup>)
-- Best-case performance: O(n log n) (simple partition) or O(n) (three-way partition and equal keys)
-- Average performance: O(n log n)
-- Worst-case space complexity: O(n) auxiliary (naive), O(log n) auxiliary (Sedgewick 1978)
+- Worst-case performance:       O(n<sup>2</sup>)
+- Best-case performance:        O(n log n) (simple partition) or O(n) (three-way partition and equal keys)
+- Average performance:          O(n log n)
+- Worst-case space complexity:  O(n) auxiliary (naive), O(log n) auxiliary (Sedgewick 1978)
 
 ## References
 

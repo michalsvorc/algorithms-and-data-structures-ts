@@ -4,7 +4,7 @@ const insertionSort = (originalArray: number[]): number[] => {
 
   /**
    * Iterate over all elements in array.
-   * Start at index 1 as the first element has nothing to compare.
+   * Start at index 1 as the first element has nothing to compare to.
    */
   for (let i = 1; i < array.length; i++) {
     let currentIndex = i;
