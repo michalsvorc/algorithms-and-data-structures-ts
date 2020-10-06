@@ -1,5 +1,7 @@
 # Algorithms and data structures in TypeScript
 
+This repository is intended as a learning resource for algorithms and data structures, hence the extensive comments. Source code in this repository is not fully optimized to be used in production environments.
+
 ## Content
 
 ### Data structures
