@@ -11,6 +11,7 @@
 
 ### Sorting algorithms
 
+- [Bubble sort](src/sortingAlgorithms/bubbleSort)
 - [Insertion sort](src/sortingAlgorithms/insertionSort)
 - [Merge sort](src/sortingAlgorithms/mergeSort)
 - [Quick sort](src/sortingAlgorithms/quickSort)
