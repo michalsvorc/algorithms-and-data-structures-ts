@@ -17,7 +17,7 @@ may require taking off multiple other items first.
 
 Simple representation of a stack runtime with push and pop operations.
 
-## Diagram
+## Visualization
 
 ![Stack](https://upload.wikimedia.org/wikipedia/commons/b/b4/Lifo_stack.png)
 

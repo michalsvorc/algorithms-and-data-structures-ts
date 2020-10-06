@@ -6,7 +6,7 @@ This makes the queue a First-In-First-Out (FIFO) data structure. In a FIFO data 
 
 Often a peek or front operation is also entered, returning the value of the front element without dequeuing it. A queue is an example of a linear data structure, or more abstractly a sequential collection.
 
-## Diagram
+## Visualization
 
 ![Queue](https://upload.wikimedia.org/wikipedia/commons/5/52/Data_Queue.svg)
 

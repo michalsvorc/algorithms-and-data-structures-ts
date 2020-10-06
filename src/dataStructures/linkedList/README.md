@@ -8,7 +8,7 @@ This structure allows for efficient insertion or removal of elements from any po
 
 A drawback of linked lists is that access time is linear (and difficult to pipeline). Faster access, such as random access, is not feasible. Arrays have better cache locality as compared to linked lists.
 
-## Diagram
+## Visualization
 
 ![Linked List](https://upload.wikimedia.org/wikipedia/commons/6/6d/Singly-linked-list.svg)
 
