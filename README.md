@@ -9,9 +9,10 @@
 - [Stack](src/dataStructures/stack)
 - [Linked list](src/dataStructures/linkedList)
 
-### Sort algorithms
+### Sorting algorithms
 
-- [Merge sort](src/sortAlgorithms/mergeSort)
+- [Merge sort](src/sortingAlgorithms/mergeSort)
+- [Quick sort](src/sortingAlgorithms/quickSort)
 
 ## Development
 

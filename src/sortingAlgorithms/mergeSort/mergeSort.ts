@@ -29,9 +29,7 @@ const merge = <T>(leftArray: T[], rightArray: T[]): T[] => {
 /** Sort an array of numbers with merge sort algorithm. */
 const mergeSort = (array: number[]): number[] => {
   /** Base case */
-  if (array.length < 2) {
-    return array;
-  }
+  if (array.length < 2) return array;
 
   /** Middle index for split step. */
   const middle = Math.floor(array.length / 2);
