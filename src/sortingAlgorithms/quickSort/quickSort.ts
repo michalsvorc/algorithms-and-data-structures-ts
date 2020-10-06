@@ -1,4 +1,4 @@
-/** Sort an array of numbers with quick sort algorithm. */
+/** Sort an array of numbers with Quicksort algorithm. */
 const quickSort = (array: number[]): number[] => {
   /** Base case */
   if (array.length < 2) return array;
