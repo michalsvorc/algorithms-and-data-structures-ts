@@ -12,6 +12,7 @@ interface ILinkedList<T> {
   length: number;
 }
 
+/** Class declaration for constructing a Linked list data structure. */
 class LinkedList<T> implements ILinkedList<T> {
   #head: TLinkedNodeNullable<T> = null;
   #tail: TLinkedNodeNullable<T> = null;

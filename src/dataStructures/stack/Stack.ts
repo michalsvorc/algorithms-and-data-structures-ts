@@ -6,6 +6,7 @@ interface IStack<T> {
   length: number;
 }
 
+/** Class declaration for constructing a Stack data structure. */
 class Stack<T> implements IStack<T> {
   #stack: T[] = [];
 

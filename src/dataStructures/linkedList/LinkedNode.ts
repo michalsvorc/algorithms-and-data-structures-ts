@@ -5,6 +5,7 @@ export interface ILinkedNode<T> {
 
 export type TLinkedNodeNullable<T> = ILinkedNode<T> | null;
 
+/** Class declaration for constructing a Node for Linked list data structure. */
 class LinkedNode<T> implements ILinkedNode<T> {
   #value: T;
   next: TLinkedNodeNullable<T>;

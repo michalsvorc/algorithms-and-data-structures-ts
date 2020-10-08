@@ -1,6 +1,7 @@
 # Merge sort
 
-In computer science, **merge sort** (also commonly spelled mergesort) is an efficient, general-purpose, comparison-based sorting algorithm. Most implementations produce a stable sort, which means that the order of equal elements is the same in the input and output.
+In computer science, **merge sort** (also commonly spelled mergesort) is an efficient, general-purpose, comparison-based sorting algorithm.
+Most implementations produce a stable sort, which means that the order of equal elements is the same in the input and output.
 
 Conceptually, a merge sort works as follows:
 - Divide the unsorted list into n sublists, each containing one element (a list of one element is considered sorted).

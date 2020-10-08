@@ -6,6 +6,7 @@ export interface IQueue<T> {
   length: number;
 }
 
+/** Class declaration for constructing a Queue data structure. */
 class Queue<T> implements IQueue<T> {
   #queue: T[];
 

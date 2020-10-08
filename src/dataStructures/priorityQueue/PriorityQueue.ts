@@ -8,6 +8,7 @@ interface IPriorityQueue<T> {
   length: number;
 }
 
+/** Class declaration for constructing a Priority queue data structure. */
 class PriorityQueue<T> implements IPriorityQueue<T> {
   #highPriorityQueue: IQueue<T>;
   #lowPriorityQueue: IQueue<T>;
