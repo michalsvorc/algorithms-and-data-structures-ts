@@ -1,24 +1,29 @@
 export interface IBinaryTreeNode {
-  data: number;
+  value: number;
   left: IBinaryTreeNode | null;
   right: IBinaryTreeNode | null;
 }
 
-/** Class declaration for constructing a Node for Binary search tree (BST) data structure. */
+/** Class declaration for constructing a Node for Binary search tree (BST) value structure. */
 export default class BinaryTreeNode implements IBinaryTreeNode {
-  #data;
+  #value;
   #left;
   #right;
 
   constructor(value: number) {
-    this.#data = value;
+    this.#value = value;
     this.#right = null;
     this.#left = null;
   }
 
-  /** Gets the data property of BST node. */
-  get data(): IBinaryTreeNode['data'] {
-    return this.#data;
+  /** Gets the value property of BST node. */
+  get value(): IBinaryTreeNode['value'] {
+    return this.#value;
+  }
+
+  /** Sets the value property of BST node. */
+  set value(value: IBinaryTreeNode['value']) {
+    this.#value = value;
   }
 
   /** Gets the left child of BST node. */
