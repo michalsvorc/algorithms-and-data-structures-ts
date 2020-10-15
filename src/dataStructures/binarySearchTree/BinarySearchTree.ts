@@ -7,7 +7,13 @@ interface IBinarySearchTree {
   root: IBinaryTreeNode | null;
   minValue: number | null;
   maxValue: number | null;
-  inOrderRepresentation: string | null;
+  traversalRepresentation: (TRAVERSAL) => number[] | null;
+}
+
+export enum TRAVERSAL {
+  IN_ORDER,
+  PRE_ORDER,
+  POST_ORDER,
 }
 
 /** Class declaration for constructing a Binary search tree (BST) value structure. */
@@ -145,40 +151,75 @@ export default class BinarySearchTree implements IBinarySearchTree {
     return this.findMaxNode(node.right);
   }
 
-  /**
-   * Performs inOrder traversal of a tree starting from a given node
-   * 1. Traverse the left subtree i.e perform inOrder on left subtree
-   * 2. Visit the root
-   * 3. Traverse the right subtree i.e perform inOrder on right subtree
-   */
-  private traverseInOrder(node: IBinaryTreeNode): number[] {
-    let traversalList: number[] = [];
+  /** Property holding BST traversal methods. */
+  traverse = {
+    /**
+     * Performs inOrder traversal of a tree starting from a given node.
+     * 1. Traverse the left subtree i.e perform inOrder on left subtree
+     * 2. Visit the root
+     * 3. Traverse the right subtree i.e perform inOrder on right subtree
+     */
+    [TRAVERSAL.IN_ORDER]: (
+      node: IBinaryTreeNode | null,
+      callback: (node: IBinaryTreeNode | null) => any
+    ): void => {
+      if (node === null) return;
 
-    /** Add left node of current traversal level. */
-    if (node.left) {
-      traversalList = traversalList.concat(this.traverseInOrder(node.left));
-    }
+      this.traverse[TRAVERSAL.IN_ORDER](node.left, callback);
+      callback(node);
+      this.traverse[TRAVERSAL.IN_ORDER](node.right, callback);
+    },
+    /**
+     * Performs preOrder traversal of a tree starting from a given node.
+     * 1. Visit the root
+     * 2. Traverse the left subtree i.e perform preOrder on left subtree
+     * 3. Traverse the right subtree i.e perform preOrder on right subtree
+     */
+    [TRAVERSAL.PRE_ORDER]: (
+      node: IBinaryTreeNode | null,
+      callback: (node: IBinaryTreeNode | null) => any
+    ): void => {
+      if (node === null) return;
 
-    /** Add root of current traversal level. */
-    traversalList.push(node.value);
+      callback(node);
+      this.traverse[TRAVERSAL.PRE_ORDER](node.left, callback);
+      this.traverse[TRAVERSAL.PRE_ORDER](node.right, callback);
+    },
+    /**
+     *  Performs postOrder traversal of a tree starting from a given node.
+     * 1. Traverse the left subtree i.e perform postOrder on left subtree
+     * 2. Traverse the right subtree i.e perform postOrder on right subtree
+     * 3. Visit the root
+     */
+    [TRAVERSAL.POST_ORDER]: (
+      node: IBinaryTreeNode | null,
+      callback: (node: IBinaryTreeNode | null) => any
+    ): void => {
+      if (node === null) return;
 
-    /** Add right node of current traversal level. */
-    if (node.right) {
-      traversalList = traversalList.concat(this.traverseInOrder(node.right));
-    }
-
-    return traversalList;
-  }
+      this.traverse[TRAVERSAL.POST_ORDER](node.left, callback);
+      this.traverse[TRAVERSAL.POST_ORDER](node.right, callback);
+      callback(node);
+    },
+  };
 
   /** Gets the root node of BST. */
   get root(): IBinaryTreeNode | null {
     return this.#root;
   }
 
-  /** Gets string representation of BST in order traversal. */
-  get inOrderRepresentation(): string | null {
+  /** Gets an array representation of BST inOrder traversal. */
+  traversalRepresentation(type: TRAVERSAL): number[] | null {
     if (this.isEmpty()) return null;
-    return this.traverseInOrder(this.#root).toString();
+
+    let traversalArray = [];
+
+    const callback = (node) => {
+      traversalArray = traversalArray.concat(node.value);
+    };
+
+    this.traverse[type](this.#root, callback);
+    return traversalArray;
   }
 
   /** Gets node with minimal value. */

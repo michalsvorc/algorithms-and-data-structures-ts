@@ -1,4 +1,4 @@
-import BinarySearchTree from './BinarySearchTree';
+import BinarySearchTree, {TRAVERSAL} from './BinarySearchTree';
 
 describe('BinarySearchTree', () => {
   it('should create binary search tree', () => {
@@ -7,7 +7,7 @@ describe('BinarySearchTree', () => {
     expect(bst).toBeDefined();
     expect(bst.root).toBeNull();
     expect(bst.isEmpty()).toBeTruthy();
-    expect(bst.inOrderRepresentation).toBeNull();
+    expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toBeNull();
   });
 
   describe('should insert', () => {
@@ -18,7 +18,7 @@ describe('BinarySearchTree', () => {
 
       expect(result).toBeTruthy();
       expect(bst.root?.value).toBe(10);
-      expect(bst.inOrderRepresentation).toBe('10');
+      expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toEqual([10]);
     });
 
     it('nodes to create balanced tree', () => {
@@ -28,7 +28,11 @@ describe('BinarySearchTree', () => {
       bst.insert(10);
       bst.insert(30);
 
-      expect(bst.inOrderRepresentation).toBe('10,20,30');
+      expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toEqual([
+        10,
+        20,
+        30,
+      ]);
     });
 
     it('nodes to create left leafed tree', () => {
@@ -38,7 +42,11 @@ describe('BinarySearchTree', () => {
       bst.insert(20);
       bst.insert(10);
 
-      expect(bst.inOrderRepresentation).toBe('10,20,30');
+      expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toEqual([
+        10,
+        20,
+        30,
+      ]);
     });
 
     it('nodes to create right leafed tree', () => {
@@ -48,7 +56,11 @@ describe('BinarySearchTree', () => {
       bst.insert(20);
       bst.insert(30);
 
-      expect(bst.inOrderRepresentation).toBe('10,20,30');
+      expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toEqual([
+        10,
+        20,
+        30,
+      ]);
     });
 
     it('prevents insertion of duplicates', () => {
@@ -63,7 +75,11 @@ describe('BinarySearchTree', () => {
 
       expect(result1).toBeFalsy();
       expect(result2).toBeFalsy();
-      expect(bst.inOrderRepresentation).toBe('10,20,30');
+      expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toEqual([
+        10,
+        20,
+        30,
+      ]);
     });
   });
 
@@ -74,7 +90,7 @@ describe('BinarySearchTree', () => {
       bst.remove(10);
       bst.remove(10);
 
-      expect(bst.inOrderRepresentation).toBeNull();
+      expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toBeNull();
     });
 
     it('node with one child', () => {
@@ -84,7 +100,7 @@ describe('BinarySearchTree', () => {
       bst.insert(20);
       bst.remove(10);
 
-      expect(bst.inOrderRepresentation).toBe('20');
+      expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toEqual([20]);
     });
 
     it('node with one left child', () => {
@@ -95,7 +111,7 @@ describe('BinarySearchTree', () => {
       bst.insert(10);
       bst.remove(20);
 
-      expect(bst.inOrderRepresentation).toBe('10,30');
+      expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toEqual([10, 30]);
     });
 
     it('node with one right child', () => {
@@ -106,7 +122,7 @@ describe('BinarySearchTree', () => {
       bst.insert(30);
       bst.remove(20);
 
-      expect(bst.inOrderRepresentation).toBe('10,30');
+      expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toEqual([10, 30]);
     });
 
     it('node with two children', () => {
@@ -117,7 +133,7 @@ describe('BinarySearchTree', () => {
       bst.insert(30);
       bst.remove(10);
 
-      expect(bst.inOrderRepresentation).toBe('20,30');
+      expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toEqual([20, 30]);
     });
 
     it('root node', () => {
@@ -134,7 +150,12 @@ describe('BinarySearchTree', () => {
       bst.remove(root);
 
       expect(bst?.root?.value).toBe(25);
-      expect(bst.inOrderRepresentation).toBe('10,25,30,50');
+      expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toEqual([
+        10,
+        25,
+        30,
+        50,
+      ]);
     });
 
     it('nonexistent node', () => {
@@ -145,7 +166,55 @@ describe('BinarySearchTree', () => {
       bst.insert(30);
       bst.remove(100);
 
-      expect(bst.inOrderRepresentation).toBe('10,20,30');
+      expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toEqual([
+        10,
+        20,
+        30,
+      ]);
+    });
+  });
+
+  describe('Traversal representation', () => {
+    const bst = new BinarySearchTree();
+
+    bst.insert(20);
+    bst.insert(10);
+    bst.insert(30);
+    bst.insert(5);
+    bst.insert(15);
+    bst.insert(35);
+
+    it('inOrder array', () => {
+      expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toEqual([
+        5,
+        10,
+        15,
+        20,
+        30,
+        35,
+      ]);
+    });
+
+    it('preOrder array', () => {
+      expect(bst.traversalRepresentation(TRAVERSAL.PRE_ORDER)).toEqual([
+        20,
+        10,
+        5,
+        15,
+        30,
+        35,
+      ]);
+    });
+
+    it('postOrder array', () => {
+      expect(bst.traversalRepresentation(TRAVERSAL.POST_ORDER)).toEqual([
+        5,
+        15,
+        10,
+        35,
+        30,
+        20,
+      ]);
     });
   });
 
