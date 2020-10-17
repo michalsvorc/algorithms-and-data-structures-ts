@@ -18,11 +18,7 @@ export enum TRAVERSAL {
 
 /** Class declaration for constructing a Binary search tree (BST) value structure. */
 export default class BinarySearchTree implements IBinarySearchTree {
-  #root;
-
-  constructor() {
-    this.#root = null;
-  }
+  #root: IBinaryTreeNode | null = null;
 
   /** Returns a Boolean value indicating whether the BST has any nodes. */
   isEmpty(): boolean {
@@ -34,9 +30,9 @@ export default class BinarySearchTree implements IBinarySearchTree {
     const newNode = new BinaryTreeNode(value);
 
     /** If BST is empty, insert new node as root. */
-    if (this.isEmpty()) {
+    if (this.#root === null) {
       this.#root = newNode;
-      return this.#root;
+      return true;
     }
 
     /** Result of private class method for inserting nodes. */
@@ -224,13 +220,13 @@ export default class BinarySearchTree implements IBinarySearchTree {
 
   /** Gets node with minimal value. */
   get minValue(): number | null {
-    if (this.isEmpty()) return null;
+    if (this.#root === null) return null;
     return this.findMinNode(this.#root).value;
   }
 
   /** Gets node with maximum value. */
   get maxValue(): number | null {
-    if (this.isEmpty()) return null;
+    if (this.#root === null) return null;
     return this.findMaxNode(this.#root).value;
   }
 }

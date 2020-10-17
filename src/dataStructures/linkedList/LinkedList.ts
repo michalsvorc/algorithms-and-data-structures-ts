@@ -16,13 +16,7 @@ interface ILinkedList<T> {
 class LinkedList<T> implements ILinkedList<T> {
   #head: TLinkedNodeNullable<T> = null;
   #tail: TLinkedNodeNullable<T> = null;
-  #length: number;
-
-  constructor() {
-    this.#head = null;
-    this.#tail = null;
-    this.#length = 0;
-  }
+  #length = 0;
 
   /** Returns a Boolean value indicating whether the LinkedList has any nodes. */
   isEmpty(): boolean {

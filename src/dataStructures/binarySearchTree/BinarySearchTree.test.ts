@@ -6,7 +6,7 @@ describe('BinarySearchTree', () => {
 
     expect(bst).toBeDefined();
     expect(bst.root).toBeNull();
-    expect(bst.isEmpty()).toBeTruthy();
+    expect(bst.isEmpty()).toBe(true);
     expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toBeNull();
   });
 
@@ -16,7 +16,7 @@ describe('BinarySearchTree', () => {
 
       const result = bst.insert(10);
 
-      expect(result).toBeTruthy();
+      expect(result).toBe(true);
       expect(bst.root?.value).toBe(10);
       expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toEqual([10]);
     });
@@ -73,8 +73,8 @@ describe('BinarySearchTree', () => {
       const result1 = bst.insert(20);
       const result2 = bst.insert(30);
 
-      expect(result1).toBeFalsy();
-      expect(result2).toBeFalsy();
+      expect(result1).toBe(false);
+      expect(result2).toBe(false);
       expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toEqual([
         10,
         20,
