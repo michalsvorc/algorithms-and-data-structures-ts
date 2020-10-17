@@ -7,6 +7,7 @@ This repository is intended as a learning resource for algorithms and data struc
 ### Data structures
 
 - [Binary search tree](src/dataStructures/binarySearchTree)
+- [Graph](src/dataStructures/graph)
 - [Linked list](src/dataStructures/linkedList)
 - [Priority queue](src/dataStructures/priorityQueue)
 - [Queue](src/dataStructures/queue)
