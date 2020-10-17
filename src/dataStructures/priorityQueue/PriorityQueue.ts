@@ -10,13 +10,8 @@ interface IPriorityQueue<T> {
 
 /** Class declaration for constructing a Priority queue data structure. */
 class PriorityQueue<T> implements IPriorityQueue<T> {
-  #highPriorityQueue: IQueue<T>;
-  #lowPriorityQueue: IQueue<T>;
-
-  constructor() {
-    this.#highPriorityQueue = new Queue();
-    this.#lowPriorityQueue = new Queue();
-  }
+  #highPriorityQueue: IQueue<T> = new Queue();
+  #lowPriorityQueue: IQueue<T> = new Queue();
 
   /** Returns a Boolean value indicating whether the priority queue has any elements. */
   isEmpty(): boolean {

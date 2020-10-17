@@ -8,11 +8,7 @@ export interface IQueue<T> {
 
 /** Class declaration for constructing a Queue data structure. */
 class Queue<T> implements IQueue<T> {
-  #queue: T[];
-
-  constructor() {
-    this.#queue = [];
-  }
+  #queue: T[] = [];
 
   /** Returns a Boolean value indicating whether the queue has any elements. */
   isEmpty(): boolean {
