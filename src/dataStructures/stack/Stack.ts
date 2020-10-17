@@ -6,11 +6,11 @@ interface IStack<T> {
   length: number;
 }
 
-/** Class declaration for constructing a Stack data structure. */
+/** Class declaration for constructing a stack data structure. */
 class Stack<T> implements IStack<T> {
   #stack: T[] = [];
 
-  /** Returns a Boolean value indicating whether the stack has any elements. */
+  /** Returns a boolean value indicating whether the stack has any elements. */
   isEmpty(): boolean {
     return this.length === 0;
   }
@@ -30,7 +30,6 @@ class Stack<T> implements IStack<T> {
     return this.#stack[this.length - 1];
   }
 
-  /** Gets the length of the stack. */
   get length(): number {
     return this.#stack.length;
   }

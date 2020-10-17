@@ -12,13 +12,13 @@ interface ILinkedList<T> {
   length: number;
 }
 
-/** Class declaration for constructing a Linked list data structure. */
+/** Class declaration for constructing a linked list data structure. */
 class LinkedList<T> implements ILinkedList<T> {
   #head: TLinkedNodeNullable<T> = null;
   #tail: TLinkedNodeNullable<T> = null;
   #length = 0;
 
-  /** Returns a Boolean value indicating whether the LinkedList has any nodes. */
+  /** Returns a Boolean value indicating whether the linked list has any nodes. */
   isEmpty(): boolean {
     return this.#length === 0;
   }
@@ -160,17 +160,14 @@ class LinkedList<T> implements ILinkedList<T> {
     return values.join(' => ');
   }
 
-  /** Gets the node at the linked list head. */
   get head(): TLinkedNodeNullable<T> {
     return this.#head;
   }
 
-  /** Gets the node at the linked list tail. */
   get tail(): TLinkedNodeNullable<T> {
     return this.#tail;
   }
 
-  /** Gets the length of the linked list. */
   get length(): number {
     return this.#length;
   }

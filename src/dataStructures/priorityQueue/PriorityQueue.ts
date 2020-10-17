@@ -8,12 +8,12 @@ interface IPriorityQueue<T> {
   length: number;
 }
 
-/** Class declaration for constructing a Priority queue data structure. */
+/** Class declaration for constructing a priority queue data structure. */
 class PriorityQueue<T> implements IPriorityQueue<T> {
   #highPriorityQueue: IQueue<T> = new Queue();
   #lowPriorityQueue: IQueue<T> = new Queue();
 
-  /** Returns a Boolean value indicating whether the priority queue has any elements. */
+  /** Returns a boolean value indicating whether the priority queue has any elements. */
   isEmpty(): boolean {
     return this.length === 0;
   }
@@ -45,7 +45,6 @@ class PriorityQueue<T> implements IPriorityQueue<T> {
     return this.#lowPriorityQueue.peek();
   }
 
-  /** Gets the length of the priority queue. */
   get length(): number {
     return this.#highPriorityQueue.length + this.#lowPriorityQueue.length;
   }
