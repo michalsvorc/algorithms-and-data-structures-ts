@@ -6,11 +6,11 @@ export interface IQueue<T> {
   length: number;
 }
 
-/** Class declaration for constructing a Queue data structure. */
+/** Class declaration for constructing a queue data structure. */
 class Queue<T> implements IQueue<T> {
   #queue: T[] = [];
 
-  /** Returns a Boolean value indicating whether the queue has any elements. */
+  /** Returns a boolean value indicating whether the queue has any elements. */
   isEmpty(): boolean {
     return this.length === 0;
   }
@@ -32,7 +32,6 @@ class Queue<T> implements IQueue<T> {
     return this.#queue[this.length - 1];
   }
 
-  /** Gets the length of the queue. */
   get length(): number {
     return this.#queue.length;
   }

@@ -4,7 +4,7 @@ export interface IBinaryTreeNode {
   right: IBinaryTreeNode | null;
 }
 
-/** Class declaration for constructing a Node for Binary search tree (BST) value structure. */
+/** Class declaration for constructing a node for binary search tree (BST) value structure. */
 export default class BinaryTreeNode implements IBinaryTreeNode {
   #value;
   #left;

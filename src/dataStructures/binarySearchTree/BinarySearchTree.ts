@@ -16,7 +16,7 @@ export enum TRAVERSAL {
   POST_ORDER,
 }
 
-/** Class declaration for constructing a Binary search tree (BST) value structure. */
+/** Class declaration for constructing a binary search tree (BST) value structure. */
 export default class BinarySearchTree implements IBinarySearchTree {
   #root: IBinaryTreeNode | null = null;
 
