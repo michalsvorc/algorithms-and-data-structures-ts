@@ -3,25 +3,23 @@ import {IGraph} from '../../dataStructures/graph/Graph';
 import {IGraphNode} from '../../dataStructures/graph/GraphNode';
 
 /**
- * Performs Breadth-First Search (BFS) on a graph data structure.
+ * Performs Breadth-first search (BFS) on a graph data structure.
  * Returns boolean based on starting node existence in the graph.
  */
-const graphBfs: <T>(
-  graph: IGraph<T>,
-  key: T,
+const graphBfs = <T>(graph: IGraph<T>) => (
   callback: (node: IGraphNode<T>) => any
-) => boolean = function (graph, key, callback) {
+) => (key: T): boolean => {
   const startingNode = graph.getNode(key);
 
   if (startingNode === undefined) return false;
 
-  /** Set for keeping track of visited nodes. */
+  /** Set object for keeping track of visited nodes. */
   const visitedNodes = new Set();
 
   /** Queue of nodes waiting for visit. */
   const queue: Queue<IGraphNode<typeof key>> = new Queue();
 
-  /** Start with putting the starting node into the queue. */
+  /** Begin with adding the starting node into the queue. */
   queue.enqueue(startingNode);
 
   while (!queue.isEmpty()) {

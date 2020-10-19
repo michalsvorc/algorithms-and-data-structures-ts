@@ -22,8 +22,7 @@ This repository is intended as a learning resource for algorithms and data struc
 
 ### Search algorithms
 
-- Graph
-    - [Breadth-First Search](src/searches/graphBfs)
+- [Graph traversals (BFS, DFS)](src/searches/graphTraversals)
 
 ## Development
 
