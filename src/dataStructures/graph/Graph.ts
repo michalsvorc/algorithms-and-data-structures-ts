@@ -1,6 +1,6 @@
 import GraphNode, {IGraphNode} from './GraphNode';
 
-interface IGraph<T> {
+export interface IGraph<T> {
   nodes: IGraphNode<T>[];
   edges: string[];
   directed: boolean;

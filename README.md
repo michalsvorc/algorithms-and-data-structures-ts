@@ -20,6 +20,11 @@ This repository is intended as a learning resource for algorithms and data struc
 - [Merge sort](src/sortingAlgorithms/mergeSort)
 - [Quick sort](src/sortingAlgorithms/quickSort)
 
+### Search algorithms
+
+- Graph
+    - [Breadth-First Search](src/searches/graphBfs)
+
 ## Development
 
 Docker container for development and test runner:
