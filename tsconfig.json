@@ -1,7 +1,50 @@
 {
-    "compilerOptions": {
-        "target": "ES2017",
-        "strictNullChecks": true,
-        "esModuleInterop": true
-    }
+  "compilerOptions": {
+    "strict": true,
+    /* Modules */
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    /* Directories */
+    "baseUrl": ".",
+    "outDir": "dist",
+    /* Compilation */
+    "incremental": true,
+    "declaration": true,
+    "inlineSourceMap": false,
+    "removeComments": true,
+    "sourceMap": true,
+    /* Type-Checking */
+    // "noImplicitAny": true,
+    "strictNullChecks": true,
+    // "strictFunctionTypes": true,
+    // "strictPropertyInitialization": true,
+    // "noImplicitThis": true,
+    // "alwaysStrict": true,
+    "skipLibCheck": true,
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    /* Debugging */
+    "traceResolution": false,
+    "listEmittedFiles": false,
+    "listFiles": false,
+    "pretty": true,
+    /* Experimental */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    /* Path aliases */
+    "paths": {},
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "compileOnSave": false
 }

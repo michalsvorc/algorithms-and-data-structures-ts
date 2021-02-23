@@ -1,11 +1,8 @@
-ARG parent_image_name
-ARG parent_image_tag
-
-FROM "${parent_image_name}:${parent_image_tag}"
+FROM node:fermium-alpine
 
 # Buildtime arguments
-ARG user_name
-ARG app_dir
+ARG user_name='node'
+ARG work_dir
 
 # Update package repositories and install packages
 RUN apk add --no-cache --update \
@@ -18,14 +15,14 @@ ENV USER="${user_name}"
 ENV HOME="/home/${user_name}"
 
 # Change to app directory
-RUN mkdir -p "${HOME}/${app_dir}"
-WORKDIR "${HOME}/${app_dir}"
+RUN mkdir -p "${HOME}/${work_dir}"
+WORKDIR "${HOME}/${work_dir}"
 
 # Copy repository
 COPY --chown="${user_name}":"${user_name}" . .
 
 # Install node packages
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 # Runtime entrypoint
 ENTRYPOINT ["/bin/bash"]

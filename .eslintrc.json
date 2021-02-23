@@ -1,30 +1,47 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["jest"],
   "env": {
-    "browser": true,
     "node": true,
-    "jest/globals": true,
-    "es6": true
+    "jest": true
   },
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "plugin:functional/lite",
+    "plugin:import/typescript",
+    "plugin:jest/recommended",
+    "plugin:prettier/recommended",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
+  "plugins": [
+    "const-case",
+    "functional",
+    "import",
+    "prettier"
   ],
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {},
-      {
-        "usePrettierrc": true
-      }
-    ],
-    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-unused-vars": "off",
+    "const-case/uppercase": "warn",
+    "functional/no-class": "off",
+    "functional/no-this-expression": "off",
+    "functional/prefer-type-literal": "off",
+    "import/order": [
+      "warn",
+      { "newlines-between": "always", "alphabetize": { "order": "asc" } }
+    ],
+    "prettier/prettier": ["warn", {}, { "usePrettierrc": true }],
+    "sort-imports": [
+      "warn",
+      { "ignoreDeclarationSort": true, "ignoreCase": true }
+    ]
+  },
+  "settings": {
+     "import/internal-regex": "^@/"
   }
 }
