@@ -7,16 +7,14 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:functional/lite",
     "plugin:import/typescript",
     "plugin:jest/recommended",
-    "plugin:prettier/recommended",
-    "prettier",
-    "prettier/@typescript-eslint"
+    "plugin:prettier/recommended"
   ],
   "plugins": [
+    "@typescript-eslint",
     "const-case",
     "functional",
     "import",
@@ -33,15 +31,25 @@
     "functional/prefer-type-literal": "off",
     "import/order": [
       "warn",
-      { "newlines-between": "always", "alphabetize": { "order": "asc" } }
+      {
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
     ],
-    "prettier/prettier": ["warn", {}, { "usePrettierrc": true }],
+    "prettier/prettier": [
+      "warn"
+    ],
     "sort-imports": [
       "warn",
-      { "ignoreDeclarationSort": true, "ignoreCase": true }
+      {
+        "ignoreDeclarationSort": true,
+        "ignoreCase": true
+      }
     ]
   },
   "settings": {
-     "import/internal-regex": "^@/"
+    "import/internal-regex": "^@/"
   }
 }
