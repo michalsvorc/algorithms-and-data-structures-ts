@@ -14,7 +14,7 @@ describe('Bubble sort', () => {
   });
 
   test('odd unsorted array', () => {
-    const filterReducer = (n) => n < 10;
+    const filterReducer = (n: number) => n < 10;
 
     expect(sortingAlgorithm(unsortedArray.filter(filterReducer))).toEqual(
       sortedArray.filter(filterReducer)
