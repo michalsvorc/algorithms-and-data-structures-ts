@@ -4,11 +4,9 @@
     "json",
     "js"
   ],
+  "preset": "ts-jest",
   "rootDir": ".",
-  "testRegex": ".*\\.spec\\.ts$",
-  "transform": {
-    "^.+\\.ts$": "ts-jest"
-  },
+  "testRegex": ".*\\.(spec|test)\\.ts$",
   "collectCoverageFrom": [
     "<rootDir>/src/**/*.ts"
   ],

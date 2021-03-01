@@ -8,7 +8,6 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:functional/lite",
     "plugin:import/typescript",
     "plugin:jest/recommended",
     "plugin:prettier/recommended"
@@ -16,7 +15,6 @@
   "plugins": [
     "@typescript-eslint",
     "const-case",
-    "functional",
     "import",
     "prettier"
   ],
@@ -26,9 +24,6 @@
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-unused-vars": "off",
     "const-case/uppercase": "warn",
-    "functional/no-class": "off",
-    "functional/no-this-expression": "off",
-    "functional/prefer-type-literal": "off",
     "import/order": [
       "warn",
       {
