@@ -1,4 +1,4 @@
-import sortingAlgorithm from './mergeSort';
+import {mergeSort} from './mergeSort';
 
 const sortedArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const unsortedArray = [3, 5, 1, 4, 6, 8, 10, 9, 7, 2];
@@ -6,27 +6,27 @@ const unsortedArrayOriginal = Object.freeze([...unsortedArray]);
 
 describe('Merge sort', () => {
   test('empty array', () => {
-    expect(sortingAlgorithm([])).toEqual([]);
+    expect(mergeSort([])).toEqual([]);
   });
 
   test('array with one element', () => {
-    expect(sortingAlgorithm([1])).toEqual([1]);
+    expect(mergeSort([1])).toEqual([1]);
   });
 
   test('odd unsorted array', () => {
-    const filterReducer = (n) => n < 10;
+    const filterReducer = (n: number) => n < 10;
 
-    expect(sortingAlgorithm(unsortedArray.filter(filterReducer))).toEqual(
+    expect(mergeSort(unsortedArray.filter(filterReducer))).toEqual(
       sortedArray.filter(filterReducer)
     );
   });
 
   test('even unsorted array', () => {
-    expect(sortingAlgorithm(unsortedArray)).toEqual(sortedArray);
+    expect(mergeSort(unsortedArray)).toEqual(sortedArray);
   });
 
   test('input array is not mutated', () => {
-    sortingAlgorithm(unsortedArray);
+    mergeSort(unsortedArray);
     expect(unsortedArray).toEqual(unsortedArrayOriginal);
   });
 });
