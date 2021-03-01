@@ -1,18 +1,18 @@
 /** Sort an array of numbers with insertion sort algorithm. */
-const insertionSort = (originalArray: number[]): number[] => {
-  const array = [...originalArray];
+const insertionSort = (inputArray: number[]): number[] => {
+  const array = [...inputArray];
 
   /**
-   * Iterate over all elements in array.
-   * Start at index 1 as the first element has nothing to compare to.
+   * Iterate over all elements in the array.
+   * Start at index 1, since the index 0 has no previous elements to compare.
    */
   for (let i = 1; i < array.length; i++) {
     let currentIndex = i;
 
     /**
      * Iterate array backwards, starting at currentIndex.
-     * Test if previous elements and greater then the one at currentIndex.
-     * If true, swap that elements, otherwise leave it in place.
+     * Test if previous elements are greater then the one at currentIndex.
+     * If true, swap that elements, otherwise leave them in place.
      */
     while (
       array[currentIndex - 1] !== undefined &&
@@ -24,7 +24,7 @@ const insertionSort = (originalArray: number[]): number[] => {
         array[currentIndex - 1],
       ];
 
-      /** Shift current index left. */
+      /** Shift current index to the left. */
       currentIndex--;
     }
   }
