@@ -1,9 +1,9 @@
-import priorityQueue from './PriorityQueue';
+import {PriorityQueue} from './PriorityQueue';
 
 describe('Priority Queue', () => {
-  let queue;
+  let queue: PriorityQueue<string | number>;
   beforeEach(() => {
-    queue = new priorityQueue();
+    queue = new PriorityQueue();
   });
 
   test('existence', () => {

@@ -1,9 +1,9 @@
-import Graph from '../../dataStructures/graph/Graph';
+import {Graph} from '../../dataStructures/graph/Graph';
 
-import graphBfs from './graphBfs';
-import graphDfs from './graphDfs';
+import {graphBfs} from './graphBfs';
+import {graphDfs} from './graphDfs';
 
-const graph = new Graph();
+const graph: Graph<string> = new Graph();
 
 const nodes = ['A', 'B', 'C', 'D', 'E'];
 
@@ -19,15 +19,15 @@ const edges = [
   ['C', 'D'],
 ];
 
-edges.forEach((edge: [string, string]) => {
-  graph.addEdge(...edge);
+edges.forEach((edge) => {
+  graph.addEdge(edge[0], edge[1]);
 });
 
 describe('Breadth-first search', () => {
   test('existing node', () => {
     const result: string[] = [];
 
-    const callback = ({key}) => {
+    const callback = ({key}: {key: string}) => {
       result.push(key);
     };
 
@@ -46,7 +46,7 @@ describe('Depth-first search', () => {
   test('existing node', () => {
     const result: string[] = [];
 
-    const callback = ({key}) => {
+    const callback = ({key}: {key: string}) => {
       result.push(key);
     };
 

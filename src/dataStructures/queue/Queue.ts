@@ -1,4 +1,4 @@
-export interface IQueue<T> {
+export interface QueueRequirements<T> {
   isEmpty(): boolean;
   enqueue(value: T): number;
   dequeue(): T | undefined;
@@ -7,8 +7,8 @@ export interface IQueue<T> {
 }
 
 /** Class declaration for constructing a queue data structure. */
-class Queue<T> implements IQueue<T> {
-  #queue: T[] = [];
+export class Queue<T> implements QueueRequirements<T> {
+  private _queue: T[] = [];
 
   /** Returns a boolean value indicating whether the queue has any elements. */
   isEmpty(): boolean {
@@ -17,24 +17,22 @@ class Queue<T> implements IQueue<T> {
 
   /** Inserts new elements at the start of the queue and returns the queue length. */
   enqueue(value: T): number {
-    this.#queue.unshift(value);
+    this._queue.unshift(value);
 
     return this.length;
   }
 
   /** Removes the last element from the queue and returns it. */
   dequeue(): T | undefined {
-    return this.#queue.pop();
+    return this._queue.pop();
   }
 
   /** Returns an element that will be removed from the queue next. */
   peek(): T | undefined {
-    return this.#queue[this.length - 1];
+    return this._queue[this.length - 1];
   }
 
   get length(): number {
-    return this.#queue.length;
+    return this._queue.length;
   }
 }
-
-export default Queue;

@@ -1,8 +1,8 @@
-import LinkedList from './LinkedList';
-import LinkedNode from './LinkedNode';
+import {LinkedList} from './LinkedList';
+import {LinkedNode} from './LinkedNode';
 
 describe('LinkedNode', () => {
-  let node;
+  let node: LinkedNode<string>;
   beforeEach(() => {
     node = new LinkedNode('a');
   });
@@ -14,7 +14,7 @@ describe('LinkedNode', () => {
 });
 
 describe('Linked List', () => {
-  let linkedList;
+  let linkedList: LinkedList<unknown>;
   beforeEach(() => {
     linkedList = new LinkedList();
   });
@@ -49,13 +49,13 @@ describe('Linked List', () => {
 
   test('push', () => {
     linkedList.push('a');
-    expect(linkedList.head.value).toEqual('a');
-    expect(linkedList.tail.value).toEqual('a');
+    expect(linkedList.head?.value).toEqual('a');
+    expect(linkedList.tail?.value).toEqual('a');
     expect(linkedList.length).toEqual(1);
 
     const b = linkedList.push('b');
 
-    expect(linkedList.head.next).toEqual(b);
+    expect(linkedList.head?.next).toEqual(b);
     expect(linkedList.tail).toEqual(b);
     expect(linkedList.length).toEqual(2);
   });
@@ -70,7 +70,7 @@ describe('Linked List', () => {
     expect(linkedList.length).toEqual(1);
     const node = linkedList.pop();
 
-    expect(node.value).toEqual(1);
+    expect(node?.value).toEqual(1);
     expect(linkedList.head).toEqual(null);
     expect(linkedList.tail).toEqual(null);
     expect(linkedList.length).toEqual(0);
@@ -79,8 +79,8 @@ describe('Linked List', () => {
     const values = ['a', 'b', 'c', 'd', 'e'];
     values.map((val) => linkedList.push(val));
 
-    expect(linkedList.pop().value).toEqual('e');
-    expect(linkedList.tail.value).toEqual('d');
+    expect(linkedList.pop()?.value).toEqual('e');
+    expect(linkedList.tail?.value).toEqual('d');
     expect(linkedList.length).toEqual(4);
   });
 
@@ -104,10 +104,10 @@ describe('Linked List', () => {
 
   describe('deleteNode', () => {
     const values = ['a', 'b', 'c', 'd', 'e'];
-    let nodes;
+    let nodes: LinkedNode<unknown>[];
 
     beforeEach(() => {
-      linkedList = new LinkedList();
+      linkedList = new LinkedList<string>();
       nodes = values.map((val) => linkedList.push(val));
     });
 
@@ -138,9 +138,9 @@ describe('Linked List', () => {
       const tail = linkedList.deleteNode(values.length - 1);
 
       expect(tail).toEqual(nodes[nodes.length - 1]);
-      expect(linkedList.tail.value).not.toEqual(tail.value);
+      expect(linkedList.tail?.value).not.toEqual(tail?.value);
       expect(linkedList.tail).toEqual(nodes[nodes.length - 2]);
-      expect(linkedList.tail.next).toBeNull();
+      expect(linkedList.tail?.next).toBeNull();
       expect(linkedList.length).toEqual(values.length - 1);
     });
   });

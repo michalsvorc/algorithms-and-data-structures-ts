@@ -1,10 +1,12 @@
-import BinaryTreeNode, {IBinaryTreeNode} from './BinaryTreeNode';
+import {BinaryTreeNode, BinaryTreeNodeRequirements} from './BinaryTreeNode';
+
+type BinaryTreeNodeNumber = BinaryTreeNodeRequirements<number>;
 
 interface IBinarySearchTree {
   isEmpty(): boolean;
   insert(value: number): boolean;
   remove(value: number): void;
-  root: IBinaryTreeNode | null;
+  root: BinaryTreeNodeNumber | null;
   minValue: number | null;
   maxValue: number | null;
   traversalRepresentation: (traversal: TRAVERSAL) => number[] | null;
@@ -17,12 +19,12 @@ export enum TRAVERSAL {
 }
 
 /** Class declaration for constructing a binary search tree (BST) value structure. */
-export default class BinarySearchTree implements IBinarySearchTree {
-  #root: IBinaryTreeNode | null = null;
+export class BinarySearchTree implements IBinarySearchTree {
+  private _root: BinaryTreeNodeNumber | null = null;
 
   /** Returns a Boolean value indicating whether the BST has any nodes. */
   isEmpty(): boolean {
-    return this.#root === null;
+    return this._root === null;
   }
 
   /** Inserts new node to BST. */
@@ -30,19 +32,19 @@ export default class BinarySearchTree implements IBinarySearchTree {
     const newNode = new BinaryTreeNode(value);
 
     /** If BST is empty, insert new node as root. */
-    if (this.#root === null) {
-      this.#root = newNode;
+    if (this._root === null) {
+      this._root = newNode;
       return true;
     }
 
     /** Result of private class method for inserting nodes. */
-    return this.insertNode(this.#root, newNode);
+    return this.insertNode(this._root, newNode);
   }
 
   /** Traverse BST to find correct location for inserting the new node. */
   private insertNode(
-    startingNode: IBinaryTreeNode,
-    newNode: IBinaryTreeNode
+    startingNode: BinaryTreeNodeNumber,
+    newNode: BinaryTreeNodeNumber
   ): boolean {
     /** New node value is equal to starting node, insert nothing and return. */
     if (newNode.value === startingNode.value) {
@@ -84,15 +86,15 @@ export default class BinarySearchTree implements IBinarySearchTree {
      * set root node with lastVisitedNode().
      */
     if (value === this.root.value) {
-      this.#root = lastVisitedNode;
+      this._root = lastVisitedNode;
     }
   }
 
   /** Traverse BST to find the node with value and remove it. */
   private removeNode(
-    node: IBinaryTreeNode | null,
+    node: BinaryTreeNodeNumber | null,
     value: number
-  ): IBinaryTreeNode | null {
+  ): BinaryTreeNodeNumber | null {
     /** Base case to stop the traversal. */
     if (node === null) return null;
 
@@ -119,7 +121,7 @@ export default class BinarySearchTree implements IBinarySearchTree {
          * we need to find inOrder successor (minimum node of the right subtree).
          */
         const inOrderSuccessor = this.findMinNode(
-          node.right as IBinaryTreeNode
+          node.right as BinaryTreeNodeNumber
         );
 
         /** Set node value to inOrderSuccessor value. */
@@ -134,14 +136,14 @@ export default class BinarySearchTree implements IBinarySearchTree {
   }
 
   /** Finds the minimum node in the BTS */
-  private findMinNode(node: IBinaryTreeNode): IBinaryTreeNode {
+  private findMinNode(node: BinaryTreeNodeNumber): BinaryTreeNodeNumber {
     /** If the leftmost node is null, then this must be the minimum node */
     if (node.left === null) return node;
     return this.findMinNode(node.left);
   }
 
   /** Finds the maximum node in the BTS */
-  private findMaxNode(node: IBinaryTreeNode): IBinaryTreeNode {
+  private findMaxNode(node: BinaryTreeNodeNumber): BinaryTreeNodeNumber {
     /** If the rightmost node is null, then this must be the maximum node */
     if (node.right === null) return node;
     return this.findMaxNode(node.right);
@@ -156,8 +158,8 @@ export default class BinarySearchTree implements IBinarySearchTree {
      * 3. Traverse the right subtree i.e perform inOrder on right subtree
      */
     [TRAVERSAL.IN_ORDER]: (
-      node: IBinaryTreeNode | null,
-      callback: (node: IBinaryTreeNode | null) => void
+      node: BinaryTreeNodeNumber | null,
+      callback: (node: BinaryTreeNodeNumber | null) => void
     ): void => {
       if (node === null) return;
 
@@ -172,8 +174,8 @@ export default class BinarySearchTree implements IBinarySearchTree {
      * 3. Traverse the right subtree i.e perform preOrder on right subtree
      */
     [TRAVERSAL.PRE_ORDER]: (
-      node: IBinaryTreeNode | null,
-      callback: (node: IBinaryTreeNode | null) => void
+      node: BinaryTreeNodeNumber | null,
+      callback: (node: BinaryTreeNodeNumber | null) => void
     ): void => {
       if (node === null) return;
 
@@ -188,8 +190,8 @@ export default class BinarySearchTree implements IBinarySearchTree {
      * 3. Visit the root
      */
     [TRAVERSAL.POST_ORDER]: (
-      node: IBinaryTreeNode | null,
-      callback: (node: IBinaryTreeNode | null) => void
+      node: BinaryTreeNodeNumber | null,
+      callback: (node: BinaryTreeNodeNumber | null) => void
     ): void => {
       if (node === null) return;
 
@@ -200,33 +202,35 @@ export default class BinarySearchTree implements IBinarySearchTree {
   };
 
   /** Gets the root node of BST. */
-  get root(): IBinaryTreeNode | null {
-    return this.#root;
+  get root(): BinaryTreeNodeNumber | null {
+    return this._root;
   }
 
   /** Gets an array representation of BST inOrder traversal. */
   traversalRepresentation(type: TRAVERSAL): number[] | null {
     if (this.isEmpty()) return null;
 
-    let traversalArray = [];
+    let traversalArray: number[] = [];
 
-    const callback = (node) => {
-      traversalArray = traversalArray.concat(node.value);
+    const callback = (node: BinaryTreeNodeNumber | null): void => {
+      if (node) {
+        traversalArray = traversalArray.concat(node.value);
+      }
     };
 
-    this.traverse[type](this.#root, callback);
+    this.traverse[type](this._root, callback);
     return traversalArray;
   }
 
   /** Gets node with minimal value. */
   get minValue(): number | null {
-    if (this.#root === null) return null;
-    return this.findMinNode(this.#root).value;
+    if (this._root === null) return null;
+    return this.findMinNode(this._root).value;
   }
 
   /** Gets node with maximum value. */
   get maxValue(): number | null {
-    if (this.#root === null) return null;
-    return this.findMaxNode(this.#root).value;
+    if (this._root === null) return null;
+    return this.findMaxNode(this._root).value;
   }
 }

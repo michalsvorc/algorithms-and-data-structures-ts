@@ -1,4 +1,4 @@
-interface IStack<T> {
+export interface StackRequirements<T> {
   isEmpty(): boolean;
   push(value: T): number;
   pop(): T | undefined;
@@ -7,8 +7,8 @@ interface IStack<T> {
 }
 
 /** Class declaration for constructing a stack data structure. */
-class Stack<T> implements IStack<T> {
-  #stack: T[] = [];
+export class Stack<T> implements StackRequirements<T> {
+  private _stack: T[] = [];
 
   /** Returns a boolean value indicating whether the stack has any elements. */
   isEmpty(): boolean {
@@ -17,22 +17,20 @@ class Stack<T> implements IStack<T> {
 
   /** Appends new elements to the stack, and returns the new length of the stack. */
   push(value: T): number {
-    return this.#stack.push(value);
+    return this._stack.push(value);
   }
 
   /** Removes the last element from the stack and returns it. */
   pop(): T | undefined {
-    return this.#stack.pop();
+    return this._stack.pop();
   }
 
   /** Returns an element that will be removed from the stack next. */
   peek(): T | undefined {
-    return this.#stack[this.length - 1];
+    return this._stack[this.length - 1];
   }
 
   get length(): number {
-    return this.#stack.length;
+    return this._stack.length;
   }
 }
-
-export default Stack;

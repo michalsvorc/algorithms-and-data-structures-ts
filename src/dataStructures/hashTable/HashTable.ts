@@ -1,20 +1,21 @@
 type Key = string;
 
-interface IHashTable<T> {
+export interface HashTableRequirements<T> {
   setValue: (key: string, value: T) => number;
   getValue: (key: string) => T | undefined;
   hashFunction: (string: string) => number;
 }
 
 /** Class declaration for constructing a hash table data structure. */
-class HashTable<T> implements IHashTable<T> {
-  #table: [Key, T][][];
+export class HashTable<T> implements HashTableRequirements<T> {
+  private _table: [Key, T][][];
+
   /** Prime number for hash function */
-  #hashingPrime = 13;
+  private _hashingPrime = 13;
 
   /** Hash table constructor function. Accepts initial table size number. */
   constructor(tableSize: number) {
-    this.#table = new Array(tableSize);
+    this._table = new Array(tableSize);
   }
 
   /** Computes an index (hash code) from a key. */
@@ -25,7 +26,7 @@ class HashTable<T> implements IHashTable<T> {
     /** Compute hash through multiple passes. */
     for (let i = 0; i < key.length; ++i) {
       hash =
-        (hash * this.#hashingPrime * key.charCodeAt(i)) % this.#table.length;
+        (hash * this._hashingPrime * key.charCodeAt(i)) % this._table.length;
     }
 
     return hash;
@@ -36,14 +37,14 @@ class HashTable<T> implements IHashTable<T> {
     const index = this.hashFunction(key);
 
     /** If hash table slot is not initialized, initialize it to an empty array. */
-    if (this.#table[index] === undefined) {
-      this.#table[index] = [];
+    if (this._table[index] === undefined) {
+      this._table[index] = [];
     }
 
     /** Store [key, value] sub-array in table slot array. */
-    this.#table[index].push([key, value]);
+    this._table[index].push([key, value]);
 
-    return this.#table[index].length;
+    return this._table[index].length;
   }
 
   /** Gets value from hash table. */
@@ -51,9 +52,9 @@ class HashTable<T> implements IHashTable<T> {
     const index = this.hashFunction(key);
 
     /** If hash table slot is not initialized. */
-    if (!Array.isArray(this.#table[index])) return undefined;
+    if (!Array.isArray(this._table[index])) return undefined;
 
-    const tableArray = this.#table[index].find(([k]) => k === key);
+    const tableArray = this._table[index].find(([k]) => k === key);
 
     /** If vale was not found in hash table slot. */
     if (tableArray === undefined) return undefined;
@@ -63,5 +64,3 @@ class HashTable<T> implements IHashTable<T> {
     return value;
   }
 }
-
-export default HashTable;

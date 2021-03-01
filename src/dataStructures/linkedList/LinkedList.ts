@@ -1,6 +1,6 @@
-import LinkedNode, {TLinkedNodeNullable} from './LinkedNode';
+import {LinkedNode, TLinkedNodeNullable} from './LinkedNode';
 
-interface ILinkedList<T> {
+export interface LinkedListRequirements<T> {
   isEmpty(): boolean;
   push(value: T): LinkedNode<T>;
   pop(): TLinkedNodeNullable<T>;
@@ -13,14 +13,14 @@ interface ILinkedList<T> {
 }
 
 /** Class declaration for constructing a linked list data structure. */
-class LinkedList<T> implements ILinkedList<T> {
-  #head: TLinkedNodeNullable<T> = null;
-  #tail: TLinkedNodeNullable<T> = null;
-  #length = 0;
+export class LinkedList<T> implements LinkedListRequirements<T> {
+  private _head: TLinkedNodeNullable<T> = null;
+  private _tail: TLinkedNodeNullable<T> = null;
+  private _length = 0;
 
   /** Returns a Boolean value indicating whether the linked list has any nodes. */
   isEmpty(): boolean {
-    return this.#length === 0;
+    return this._length === 0;
   }
 
   /** Appends new node to the linked list, and returns the appended node. */
@@ -32,14 +32,14 @@ class LinkedList<T> implements ILinkedList<T> {
      * However, if we do have a head, then we know we have a current tail, we need to set
      * our current tail's next property to our new node.
      */
-    if (this.#head === null) {
-      this.#head = linkedNode;
+    if (this._head === null) {
+      this._head = linkedNode;
     } else {
-      this.#tail && (this.#tail.next = linkedNode);
+      this._tail && (this._tail.next = linkedNode);
     }
 
-    this.#tail = linkedNode;
-    this.#length++;
+    this._tail = linkedNode;
+    this._length++;
 
     return linkedNode;
   }
@@ -49,24 +49,24 @@ class LinkedList<T> implements ILinkedList<T> {
     if (this.isEmpty()) return null;
 
     /** Tail node we're going to return. */
-    const node = this.#tail;
+    const node = this._tail;
 
     /**
      * A list of length 1 means that our head and our tail are the same node, so we set both
      * our head and tail back to null. Our length will need to be reset to 0 or decremented,
      * either way gets us to a length of 0. Then we return the node we stored.
      */
-    if (this.#head === this.#tail) {
-      this.#head = null;
-      this.#tail = null;
+    if (this._head === this._tail) {
+      this._head = null;
+      this._tail = null;
     } else {
-      let currentNode = this.#head;
+      let currentNode = this._head;
       let penultimateNode;
 
       /** Linked nodes traversal. */
       while (currentNode) {
         /** Penultimate node encountered. */
-        if (currentNode.next === this.#tail) {
+        if (currentNode.next === this._tail) {
           penultimateNode = currentNode;
           break;
         }
@@ -75,26 +75,29 @@ class LinkedList<T> implements ILinkedList<T> {
         currentNode = currentNode.next;
       }
 
-      penultimateNode.next = null;
-      this.#tail = penultimateNode;
+      if (penultimateNode?.next) {
+        penultimateNode.next = null;
+      }
+
+      this._tail = penultimateNode || null;
     }
 
-    this.#length--;
+    this._length--;
 
     return node;
   }
 
   /** Returns a node at provided index position in the linked list sequence. */
   getNode(index: number): TLinkedNodeNullable<T> {
-    if (index < 0 || index >= this.#length) {
+    if (index < 0 || index >= this._length) {
       return null;
     }
 
     if (index === 0) {
-      return this.#head;
+      return this._head;
     }
 
-    let currentNode = this.#head;
+    let currentNode = this._head;
     let i = 0;
 
     while (i < index) {
@@ -107,18 +110,18 @@ class LinkedList<T> implements ILinkedList<T> {
 
   /** Removes a node at provided index position in the linked list sequence and returns it. */
   deleteNode(index: number): TLinkedNodeNullable<T> {
-    if (index < 0 || index > this.#length - 1) {
+    if (index < 0 || index > this._length - 1) {
       return null;
     }
 
     let deletedNode;
 
     if (index === 0) {
-      deletedNode = this.#head;
+      deletedNode = this._head;
 
-      this.#head = this.#head && this.#head.next;
+      this._head = this._head && this._head.next;
     } else {
-      let currentNode = this.#head;
+      let currentNode = this._head;
       let previousNode;
 
       /**
@@ -134,15 +137,18 @@ class LinkedList<T> implements ILinkedList<T> {
       }
 
       deletedNode = currentNode;
-      previousNode.next = currentNode && currentNode.next;
+
+      if (previousNode?.next) {
+        previousNode.next = currentNode && currentNode.next;
+      }
 
       /** If we deleted the tail node, set previous node as the linked list tail. */
-      if (previousNode.next === null) {
-        this.#tail = previousNode;
+      if (previousNode?.next === null) {
+        this._tail = previousNode;
       }
     }
 
-    this.#length--;
+    this._length--;
 
     return deletedNode;
   }
@@ -150,7 +156,7 @@ class LinkedList<T> implements ILinkedList<T> {
   /** Returns a string composed from all node values of the linked list. */
   print(): string {
     const values: T[] = [];
-    let currentNode = this.#head;
+    let currentNode = this._head;
 
     while (currentNode) {
       values.push(currentNode.value);
@@ -161,16 +167,14 @@ class LinkedList<T> implements ILinkedList<T> {
   }
 
   get head(): TLinkedNodeNullable<T> {
-    return this.#head;
+    return this._head;
   }
 
   get tail(): TLinkedNodeNullable<T> {
-    return this.#tail;
+    return this._tail;
   }
 
   get length(): number {
-    return this.#length;
+    return this._length;
   }
 }
-
-export default LinkedList;

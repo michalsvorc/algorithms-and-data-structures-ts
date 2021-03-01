@@ -1,7 +1,8 @@
-import Stack from './Stack';
+import {Stack} from './Stack';
 
 describe('Stacks', () => {
-  let stack;
+  let stack: Stack<string | number>;
+
   beforeEach(() => {
     stack = new Stack();
   });

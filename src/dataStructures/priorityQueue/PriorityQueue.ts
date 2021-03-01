@@ -1,6 +1,6 @@
-import Queue, {IQueue} from '../queue/Queue';
+import {Queue} from '../queue/Queue';
 
-interface IPriorityQueue<T> {
+export interface PriorityQueueRequirements<T> {
   isEmpty(): boolean;
   enqueue(value: T, isHighPriority: boolean): number;
   dequeue(): T | undefined;
@@ -9,20 +9,23 @@ interface IPriorityQueue<T> {
 }
 
 /** Class declaration for constructing a priority queue data structure. */
-class PriorityQueue<T> implements IPriorityQueue<T> {
-  #highPriorityQueue: IQueue<T> = new Queue();
-  #lowPriorityQueue: IQueue<T> = new Queue();
+export class PriorityQueue<T> implements PriorityQueueRequirements<T> {
+  private _highPriorityQueue: Queue<T> = new Queue();
+  private _lowPriorityQueue: Queue<T> = new Queue();
 
   /** Returns a boolean value indicating whether the priority queue has any elements. */
   isEmpty(): boolean {
     return this.length === 0;
   }
 
-  /** Inserts new elements at the start of the priority queue based on their priority.Returns the priority queue length. */
-  enqueue(value: T, isHighPriority: boolean): number {
+  /**
+   * Inserts new elements at the start of the priority queue based on their priority.
+   * Returns priority queue length.
+   */
+  enqueue(value: T, isHighPriority = false): number {
     const queue = isHighPriority
-      ? this.#highPriorityQueue
-      : this.#lowPriorityQueue;
+      ? this._highPriorityQueue
+      : this._lowPriorityQueue;
 
     queue.enqueue(value);
 
@@ -31,23 +34,21 @@ class PriorityQueue<T> implements IPriorityQueue<T> {
 
   /** Removes the last element based on its priority from the priority queue and returns it. */
   dequeue(): T | undefined {
-    if (!this.#highPriorityQueue.isEmpty())
-      return this.#highPriorityQueue.dequeue();
+    if (!this._highPriorityQueue.isEmpty())
+      return this._highPriorityQueue.dequeue();
 
-    return this.#lowPriorityQueue.dequeue();
+    return this._lowPriorityQueue.dequeue();
   }
 
   /** Returns an element that will be removed from the queue next. */
   peek(): T | undefined {
-    if (!this.#highPriorityQueue.isEmpty())
-      return this.#highPriorityQueue.peek();
+    if (!this._highPriorityQueue.isEmpty())
+      return this._highPriorityQueue.peek();
 
-    return this.#lowPriorityQueue.peek();
+    return this._lowPriorityQueue.peek();
   }
 
   get length(): number {
-    return this.#highPriorityQueue.length + this.#lowPriorityQueue.length;
+    return this._highPriorityQueue.length + this._lowPriorityQueue.length;
   }
 }
-
-export default PriorityQueue;

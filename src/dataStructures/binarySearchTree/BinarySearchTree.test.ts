@@ -1,4 +1,4 @@
-import BinarySearchTree, {TRAVERSAL} from './BinarySearchTree';
+import {BinarySearchTree, TRAVERSAL} from './BinarySearchTree';
 
 describe('BinarySearchTree', () => {
   it('should create binary search tree', () => {

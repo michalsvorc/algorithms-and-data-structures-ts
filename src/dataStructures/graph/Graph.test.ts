@@ -1,8 +1,8 @@
-import Graph from './Graph';
-import GraphNode from './GraphNode';
+import {Graph} from './Graph';
+import {GraphNode} from './GraphNode';
 
 describe('GraphNode', () => {
-  let node;
+  let node: GraphNode<string>;
   beforeEach(() => {
     node = new GraphNode('A');
   });
@@ -21,15 +21,16 @@ describe('GraphNode', () => {
   });
 
   test('addConnection', () => {
-    node.addConnection('B');
+    const connection = new GraphNode('B');
+    node.addConnection(connection);
 
     expect(node.connections.length).toEqual(1);
-    expect(node.connections.includes('B')).toBe(true);
+    expect(node.connections.includes(connection)).toBe(true);
   });
 });
 
 describe('Graph', () => {
-  let graph;
+  let graph: Graph<string>;
 
   beforeEach(() => {
     graph = new Graph();
@@ -55,7 +56,7 @@ describe('Graph', () => {
   test('getNode', () => {
     graph.addNode('A');
 
-    expect(graph.getNode('A').key).toBe('A');
+    expect(graph.getNode('A')?.key).toBe('A');
   });
 
   describe('addEdge', () => {
@@ -67,14 +68,14 @@ describe('Graph', () => {
 
       expect(
         graph
-          .getNode('A')
-          .connections.map((node) => node.key)
+          ?.getNode('A')
+          ?.connections.map((node) => node.key)
           .includes('B')
       ).toBe(true);
       expect(
         graph
-          .getNode('B')
-          .connections.map((node) => node.key)
+          ?.getNode('B')
+          ?.connections.map((node) => node.key)
           .includes('A')
       ).toBe(true);
     });
@@ -88,14 +89,14 @@ describe('Graph', () => {
 
       expect(
         graph
-          .getNode('A')
-          .connections.map((node) => node.key)
+          ?.getNode('A')
+          ?.connections.map((node) => node.key)
           .includes('B')
       ).toBe(true);
       expect(
         graph
-          .getNode('B')
-          .connections.map((node) => node.key)
+          ?.getNode('B')
+          ?.connections.map((node) => node.key)
           .includes('A')
       ).toBe(false);
     });
@@ -141,7 +142,7 @@ describe('Graph', () => {
         ['C', 'D'],
       ];
       edges.forEach((edge) => {
-        graph.addEdge(...edge);
+        graph.addEdge(edge[0], edge[1]);
       });
 
       expect(graph.print()).toEqual(
@@ -165,7 +166,7 @@ describe('Graph', () => {
         ['C', 'D'],
       ];
       edges.forEach((edge) => {
-        graph.addEdge(...edge);
+        graph.addEdge(edge[0], edge[1]);
       });
 
       expect(graph.print()).toEqual(`A => B C E; B => D; C => D; D; E`);

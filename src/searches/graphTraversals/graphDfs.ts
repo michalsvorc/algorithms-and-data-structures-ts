@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */ // TODO type
-
-import {IGraph} from '../../dataStructures/graph/Graph';
-import {IGraphNode} from '../../dataStructures/graph/GraphNode';
+import {Graph} from '../../dataStructures/graph/Graph';
+import {GraphNodeRequirements} from '../../dataStructures/graph/GraphNode';
 
 /** Traversal function for DFS. Runs callback on passed node argument, then recurs on connected nodes. */
-const traversal = (visitedNodes: any) => (callback: any) => (node: any) => {
+const traversal = <T>(visitedNodes: Set<T>) => (
+  callback: (node: GraphNodeRequirements<T>) => void
+) => (node: GraphNodeRequirements<T>) => {
   const {key} = node;
 
   if (visitedNodes.has(key)) return;
@@ -12,7 +12,7 @@ const traversal = (visitedNodes: any) => (callback: any) => (node: any) => {
   callback(node);
   visitedNodes.add(key);
 
-  node.connections.forEach((connectedNode: any) => {
+  node.connections.forEach((connectedNode): void => {
     const traverseGraph = traversal(visitedNodes)(callback);
     traverseGraph(connectedNode);
   });
@@ -22,20 +22,17 @@ const traversal = (visitedNodes: any) => (callback: any) => (node: any) => {
  * Performs Depth-first search (DFS) on a graph data structure.
  * Returns boolean based on starting node existence in the graph.
  */
-const graphDfs = <T>(graph: IGraph<T>) => (
-  callback: (node: IGraphNode<T>) => any
+export const graphDfs = <T>(graph: Graph<T>) => (
+  callback: (node: GraphNodeRequirements<T>) => void
 ) => (key: T): boolean => {
   const startingNode = graph.getNode(key);
 
   if (startingNode === undefined) return false;
 
-  /** Set object for keeping track of visited nodes. */
-  const visitedNodes = new Set();
+  /** Use Set data structure for keeping track of visited nodes. */
+  const visitedNodes: Set<T> = new Set();
 
   /** Begin with traversal on the starting node. */
-  const traverseGraph = traversal(visitedNodes)(callback);
-  traverseGraph(startingNode);
+  traversal<T>(visitedNodes)(callback)(startingNode);
   return true;
 };
-
-export default graphDfs;
