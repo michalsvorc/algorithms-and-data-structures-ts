@@ -139,15 +139,15 @@ describe('BinarySearchTree', () => {
     it('root node', () => {
       const bst = new BinarySearchTree();
 
-      const root = 20;
+      const ROOT = 20;
 
-      bst.insert(root);
+      bst.insert(ROOT);
       bst.insert(10);
       bst.insert(30);
       bst.insert(25);
       bst.insert(50);
 
-      bst.remove(root);
+      bst.remove(ROOT);
 
       expect(bst?.root?.value).toBe(25);
       expect(bst.traversalRepresentation(TRAVERSAL.IN_ORDER)).toEqual([
@@ -220,19 +220,19 @@ describe('BinarySearchTree', () => {
 
   it('should find min and max values', () => {
     const bst = new BinarySearchTree();
-    expect(bst.minValue).toBeNull;
-    expect(bst.maxValue).toBeNull;
+    expect(bst.minValue).toBeNull();
+    expect(bst.maxValue).toBeNull();
 
-    const minValue = 10;
-    const maxValue = 50;
+    const MIN_VALUE = 10;
+    const MAX_VALUE = 50;
 
     bst.insert(30);
     bst.insert(20);
-    bst.insert(maxValue);
-    bst.insert(minValue);
+    bst.insert(MAX_VALUE);
+    bst.insert(MIN_VALUE);
     bst.insert(40);
 
-    expect(bst.minValue).toBe(minValue);
-    expect(bst.maxValue).toBe(maxValue);
+    expect(bst.minValue).toBe(MIN_VALUE);
+    expect(bst.maxValue).toBe(MAX_VALUE);
   });
 });

@@ -17,7 +17,7 @@ describe('GraphNode', () => {
 
   test('connections', () => {
     expect(node.connections).toBeDefined();
-    expect(Array.isArray(node.connections));
+    expect(Array.isArray(node.connections)).toBeTruthy();
   });
 
   test('addConnection', () => {

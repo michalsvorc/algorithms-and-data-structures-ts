@@ -1,5 +1,5 @@
-import LinkedNode from './LinkedNode';
 import LinkedList from './LinkedList';
+import LinkedNode from './LinkedNode';
 
 describe('LinkedNode', () => {
   let node;

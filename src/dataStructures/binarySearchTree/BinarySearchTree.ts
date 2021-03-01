@@ -7,7 +7,7 @@ interface IBinarySearchTree {
   root: IBinaryTreeNode | null;
   minValue: number | null;
   maxValue: number | null;
-  traversalRepresentation: (TRAVERSAL) => number[] | null;
+  traversalRepresentation: (traversal: TRAVERSAL) => number[] | null;
 }
 
 export enum TRAVERSAL {
@@ -157,7 +157,7 @@ export default class BinarySearchTree implements IBinarySearchTree {
      */
     [TRAVERSAL.IN_ORDER]: (
       node: IBinaryTreeNode | null,
-      callback: (node: IBinaryTreeNode | null) => any
+      callback: (node: IBinaryTreeNode | null) => void
     ): void => {
       if (node === null) return;
 
@@ -173,7 +173,7 @@ export default class BinarySearchTree implements IBinarySearchTree {
      */
     [TRAVERSAL.PRE_ORDER]: (
       node: IBinaryTreeNode | null,
-      callback: (node: IBinaryTreeNode | null) => any
+      callback: (node: IBinaryTreeNode | null) => void
     ): void => {
       if (node === null) return;
 
@@ -189,7 +189,7 @@ export default class BinarySearchTree implements IBinarySearchTree {
      */
     [TRAVERSAL.POST_ORDER]: (
       node: IBinaryTreeNode | null,
-      callback: (node: IBinaryTreeNode | null) => any
+      callback: (node: IBinaryTreeNode | null) => void
     ): void => {
       if (node === null) return;
 

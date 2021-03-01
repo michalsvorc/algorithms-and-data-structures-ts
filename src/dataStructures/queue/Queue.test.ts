@@ -32,11 +32,11 @@ describe('Queue', () => {
   test('enqueue', () => {
     expect(queue.length).toEqual(0);
 
-    const value = 'foo';
-    queue.enqueue(value);
+    const VALUE = 'foo';
+    queue.enqueue(VALUE);
 
     expect(queue.length).toEqual(1);
-    expect(queue.peek()).toEqual(value);
+    expect(queue.peek()).toEqual(VALUE);
   });
 
   test('dequeue', () => {

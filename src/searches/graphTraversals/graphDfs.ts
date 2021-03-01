@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */ // TODO type
+
 import {IGraph} from '../../dataStructures/graph/Graph';
 import {IGraphNode} from '../../dataStructures/graph/GraphNode';
 
 /** Traversal function for DFS. Runs callback on passed node argument, then recurs on connected nodes. */
-const traversal = (visitedNodes) => (callback) => (node) => {
+const traversal = (visitedNodes: any) => (callback: any) => (node: any) => {
   const {key} = node;
 
   if (visitedNodes.has(key)) return;
@@ -10,7 +12,7 @@ const traversal = (visitedNodes) => (callback) => (node) => {
   callback(node);
   visitedNodes.add(key);
 
-  node.connections.forEach((connectedNode) => {
+  node.connections.forEach((connectedNode: any) => {
     const traverseGraph = traversal(visitedNodes)(callback);
     traverseGraph(connectedNode);
   });

@@ -32,11 +32,11 @@ describe('Stacks', () => {
   test('push', () => {
     expect(stack.length).toEqual(0);
 
-    const value = 'foo';
-    stack.push(value);
+    const VALUE = 'foo';
+    stack.push(VALUE);
 
     expect(stack.length).toEqual(1);
-    expect(stack.peek()).toEqual(value);
+    expect(stack.peek()).toEqual(VALUE);
   });
 
   test('pop', () => {
