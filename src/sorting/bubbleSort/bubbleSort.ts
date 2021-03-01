@@ -1,5 +1,5 @@
 /** Sort an array of numbers with bubble sort algorithm. */
-function bubbleSort(inputArray: number[]): number[] {
+export const bubbleSort = (inputArray: number[]): number[] => {
   const array = [...inputArray];
 
   /**
@@ -25,6 +25,4 @@ function bubbleSort(inputArray: number[]): number[] {
   } while (swapped);
 
   return array;
-}
-
-export default bubbleSort;
+};

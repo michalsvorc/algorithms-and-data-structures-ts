@@ -1,5 +1,5 @@
 /** Sort an array of numbers with insertion sort algorithm. */
-const insertionSort = (inputArray: number[]): number[] => {
+export const insertionSort = (inputArray: number[]): number[] => {
   const array = [...inputArray];
 
   /**
@@ -31,5 +31,3 @@ const insertionSort = (inputArray: number[]): number[] => {
 
   return array;
 };
-
-export default insertionSort;
