@@ -16,10 +16,10 @@ This repository is intended as a learning resource for algorithms and data struc
 
 ### Sorting algorithms
 
-- [Bubble sort](src/sortingAlgorithms/bubbleSort)
-- [Insertion sort](src/sortingAlgorithms/insertionSort)
-- [Merge sort](src/sortingAlgorithms/mergeSort)
-- [Quick sort](src/sortingAlgorithms/quickSort)
+- [Bubble sort](src/sorting/bubbleSort)
+- [Insertion sort](src/sorting/insertionSort)
+- [Merge sort](src/sorting/mergeSort)
+- [Quick sort](src/sorting/quickSort)
 
 ### Search algorithms
 
